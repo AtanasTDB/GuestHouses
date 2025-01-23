@@ -54,4 +54,12 @@ class PublicGuestHouseController extends Controller
     $guestHouse = GuestHouse::findOrFail($id);
     return view('guesthouses.show', compact('guestHouse'));
 }
+public function welcome()
+    {
+        
+        $topGuestHouses = GuestHouse::orderBy('rating', 'desc')->take(3)->get();
+
+        
+        return view('welcome', compact('topGuestHouses'));
+    }
 }

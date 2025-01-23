@@ -9,9 +9,7 @@ use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\Admin\GuestHouseImgUrlController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicGuestHouseController::class, 'welcome'])->name('welcome');
 
 Route::get('/guesthouses', [PublicGuestHouseController::class, 'index'])->name('guesthouses.index');
 Route::get('/guesthouses/{id}', [PublicGuestHouseController::class, 'show'])->name('guesthouses.show');
