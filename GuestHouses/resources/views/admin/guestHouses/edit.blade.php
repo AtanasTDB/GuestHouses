@@ -104,7 +104,8 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Update Guesthouse</button>
+        <button type="submit" class="btn btn-primary mt-3">Update Guesthouse</button>
+        <a href="{{ route('admin.guesthouses.index') }}" class="btn btn-secondary mt-3">Back to Guesthouses</a>
     </form>
 </div>
 @endsection

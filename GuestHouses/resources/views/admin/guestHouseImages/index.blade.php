@@ -11,6 +11,7 @@
     @endif
 
     <a href="{{ route('admin.guesthouseImages.create', $guesthouse->id) }}" class="btn btn-primary mb-3">Add Image</a>
+    <a href="{{ route('admin.guesthouses.index') }}" class="btn btn-secondary mb-3">Back to Guesthouses</a>
 
     <div class="row">
         @foreach ($images as $image)
