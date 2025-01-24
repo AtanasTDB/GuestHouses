@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Available Guest Houses')
+@section('title', 'Къщи за гости')
 
 @section('content')
 <div class="container my-5">
@@ -16,7 +16,7 @@
                 type="number" 
                 name="price_min" 
                 id="price_min" 
-                class="form-control" 
+                class="form-control custom-input" 
                 placeholder="0" 
                 value="{{ request('price_min') }}">
         </div>
@@ -28,7 +28,7 @@
                 type="number" 
                 name="price_max" 
                 id="price_max" 
-                class="form-control" 
+                class="form-control custom-input" 
                 placeholder="1000" 
                 value="{{ request('price_max') }}">
         </div>
@@ -36,7 +36,7 @@
 
         <div class="col-md-4 col-lg-3 mb-3">
             <label for="location" class="form-label">Местоположение</label>
-            <select name="location" id="location" class="form-select">
+            <select name="location" id="location" class="form-select custom-input">
                 <option value="">Избери</option>
                 @foreach($locations as $location)
                     <option 
@@ -51,7 +51,7 @@
 
         <div class="col-md-4 col-lg-3 mb-3">
             <label for="location_type" class="form-label">Тип туризъм</label>
-            <select name="location_type" id="location_type" class="form-select">
+            <select name="location_type" id="location_type" class="form-select custom-input">
                 <option value="">Избери</option>
                 @foreach($locationTypes as $locationType)
                     <option 
@@ -66,7 +66,7 @@
 
         <div class="col-md-4 col-lg-3 mb-3">
             <label for="rating_min" class="form-label">Рейтинг</label>
-            <select name="rating_min" id="rating_min" class="form-select">
+            <select name="rating_min" id="rating_min" class="form-select custom-input">
                 <option value="">Избери</option>
                 @for ($i = 1; $i <= 5; $i++)
                     <option value="{{ $i }}" {{ request('rating_min') == $i ? 'selected' : '' }}>
@@ -82,7 +82,7 @@
                 type="number" 
                 name="capacity_min" 
                 id="capacity_min" 
-                class="form-control" 
+                class="form-control custom-input" 
                 placeholder="1" 
                 value="{{ request('capacity_min') }}">
         </div>
@@ -94,7 +94,7 @@
                 type="number" 
                 name="capacity_max" 
                 id="capacity_max" 
-                class="form-control" 
+                class="form-control custom-input" 
                 placeholder="10" 
                 value="{{ request('capacity_max') }}">
         </div>
@@ -171,4 +171,25 @@
         @endforeach
     </div>
 </div>
+@section('styles')
+<style>
+    .custom-input {
+        background-color: #2a2a2a;
+        color: white;
+        border: 1px solid #444;
+    }
+    .custom-input:focus {
+        background-color: #333;
+        border-color: #5b9bd5;
+        color: white;
+        box-shadow: none;
+    }
+
+    .custom-input::placeholder {
+        color: #bbb;
+    }
+
+
+</style>
+@endsection
 @endsection

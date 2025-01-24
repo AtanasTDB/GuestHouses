@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>All Reservations</h1>
+    <h1>Всички Резервации</h1>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -14,12 +14,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>User</th>
-                    <th>Guesthouse</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Total Price</th>
-                    <th>Actions</th>
+                    <th>Потребител</th>
+                    <th>Къща за гости</th>
+                    <th>Дата на настаняване</th>
+                    <th>Дата на напускане</th>
+                    <th>Обща цена</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,13 +29,13 @@
                         <td>{{ $reservation->guesthouse->name }}</td>
                         <td>{{ $reservation->reservation_date }}</td>
                         <td>{{ $reservation->leaving_date }}</td>
-                        <td>${{ $reservation->price }}</td>
+                        <td> BGN {{ $reservation->price }}</td>
                         <td>
-                            <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="btn btn-warning btn-sm">Промени</a>
                             <form action="{{ route('admin.reservations.destroy', $reservation->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си?')">Изтрий</button>
                             </form>
                         </td>
                     </tr>
@@ -43,7 +43,7 @@
             </tbody>
         </table>
     @else
-        <p>No reservations found.</p>
+        <p>Няма резервации</p>
     @endif
 </div>
 @endsection

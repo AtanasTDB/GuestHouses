@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Manage Images')
+@section('title', 'Управлявай снимки')
 
 @section('content')
 <div class="container my-5">
-    <h1>Manage Images for {{ $guesthouse->name }}</h1>
+    <h1>Управлявай снимки за {{ $guesthouse->name }}</h1>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('admin.guesthouseImages.create', $guesthouse->id) }}" class="btn btn-primary mb-3">Add Image</a>
-    <a href="{{ route('admin.guesthouses.index') }}" class="btn btn-secondary mb-3">Back to Guesthouses</a>
+    <a href="{{ route('admin.guesthouseImages.create', $guesthouse->id) }}" class="btn btn-primary mb-3">Добави</a>
+    <a href="{{ route('admin.guesthouses.index') }}" class="btn btn-secondary mb-3">Назад</a>
 
     <div class="row">
         @foreach ($images as $image)
@@ -22,7 +22,7 @@
                         <form action="{{ route('admin.guesthouseImages.destroy', [$guesthouse->id, $image->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Изтрий</button>
                         </form>
                     </div>
                 </div>

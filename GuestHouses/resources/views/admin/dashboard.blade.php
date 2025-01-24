@@ -1,67 +1,64 @@
 @extends('layouts.app')
 
-@section('title', 'Admin Panel')
+@section('title', 'Админ Панел')
 
 @section('content')
 <div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <div class="d-flex justify-content-between mb-4">
+        <h1 class="h3 text-gray-800">Админ Панел</h1>
     </div>
 
     <div class="row">
-        <!-- Guest Houses -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+            <div class="card shadow-lg rounded-lg border-left-primary">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Guest Houses</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['guesthouses_count'] }}</div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title text-warning">Къщи за гости</h5>
+                            <h2 class="font-weight-bold">{{ $stats['guesthouses_count'] }}</h2>
                         </div>
-                        <div class="col-auto mt-3">
-                            <a href="{{ route('admin.guesthouses.index') }}" class="btn btn-primary btn-sm">Manage Guest Houses</a>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <a href="{{ route('admin.guesthouses.index') }}" class="btn btn-warning btn-lg">Управлявай</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Locations -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+            <div class="card shadow-lg rounded-lg border-left-success">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Locations</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['locations_count'] }}</div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title text-success">Местоположения</h5>
+                            <h2 class="font-weight-bold">{{ $stats['locations_count'] }}</h2>
                         </div>
-                        <div class="col-auto mt-3">
-                            <a href="{{ route('admin.guestHouseLocations.index') }}" class="btn btn-success btn-sm">Manage Locations</a>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <a href="{{ route('admin.guestHouseLocations.index') }}" class="btn btn-success btn-lg">Управлявай</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Reservations -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
+        <div class="col-xl-4 col-lg-6 mb-4">
+            <div class="card shadow-lg rounded-lg border-left-info">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Reservations</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['reservations_count'] }}</div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title text-info">Резервации</h5>
+                            <h2 class="font-weight-bold">{{ $stats['reservations_count'] }}</h2>
                         </div>
-                        <div class="col-auto mt-3">
-                            <a href="{{ route('admin.reservations.index') }}" class="btn btn-info btn-sm">Manage Reservations</a>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <a href="{{ route('admin.reservations.index') }}" class="btn btn-info btn-lg">Управлявай</a>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 @endsection
