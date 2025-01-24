@@ -47,7 +47,7 @@ class PublicReservationController extends Controller
             'price' => $totalPrice,
         ]);
 
-        return redirect()->route('guesthouses.index')->with('success', 'Reservation created successfully!');
+        return redirect()->route('guesthouses.index')->with('success', 'Резервацията направена успешно');
     }
     public function destroy($reservationId)
     {
@@ -58,12 +58,12 @@ class PublicReservationController extends Controller
 
         if (!$reservation) {
             // Reservation not found or does not belong to the user
-            return redirect()->route('reservations.index')->with('error', 'Reservation not found or you do not have permission to delete it.');
+            return redirect()->route('reservations.index')->with('error', 'Резервацията не е намерена');
         }
 
         // Delete the reservation
         $reservation->delete();
 
-        return redirect()->route('reservations.index')->with('success', 'Reservation cancelled successfully!');
+        return redirect()->route('reservations.index')->with('success', 'Резервацията е отменена успешно');
     }
 }

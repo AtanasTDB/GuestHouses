@@ -12,7 +12,7 @@ class GuestHouseImgUrlController extends Controller
 {
     public function index(GuestHouse $guesthouse)
     {
-        $images = $guesthouse->images; // Assuming the relationship is set up
+        $images = $guesthouse->images;
         return view('admin.guestHouseImages.index', compact('guesthouse', 'images'));
     }
 
@@ -23,25 +23,19 @@ class GuestHouseImgUrlController extends Controller
 
     public function store(Request $request, GuestHouse $guestHouse)
     {
-    \Log::info($request->all());
+    
 
-    // Validate the URL input
+    
     $request->validate([
-        'image_path' => 'required|url|active_url',  // Ensure it's a valid URL
+        'image_path' => 'required|url|active_url',  
     ]);
 
-    \Log::info("Validation passed");
-
-    // Create a new record for the image URL
     GuestHouseImageUrl::create([
         'guest_house_id' => $guestHouse->id,
         'image_path' => $request->image_path,
     ]);
 
-    \Log::info("Image added to database");
-
-    // Redirect with success message
-    return redirect()->route('admin.guesthouseImages.index', $guestHouse->id)->with('success', 'Image URL added successfully!');
+    return redirect()->route('admin.guesthouseImages.index', $guestHouse->id)->with('success', 'Снимката е добавена успешно');
     }
 
     public function destroy(GuestHouse $guesthouse, GuestHouseImageUrl $image)
@@ -49,6 +43,6 @@ class GuestHouseImgUrlController extends Controller
         $image->delete();
 
         return redirect()->route('admin.guesthouseImages.index', $guesthouse->id)
-                         ->with('success', 'Image deleted successfully!');
+                         ->with('success', 'Снимката е изтрита успешно');
     }
 }

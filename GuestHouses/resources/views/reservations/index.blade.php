@@ -27,7 +27,7 @@
                         <td>{{$reservation->guesthouse->type}} {{ $reservation->guesthouse->name }}</td>
                         <td>{{ $reservation->reservation_date }}</td>
                         <td>{{ $reservation->leaving_date }}</td>
-                        <td>${{ $reservation->price }}</td>
+                        <td> BGN {{ $reservation->price }}</td>
                         <td>
                             <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" style="display:inline;">
                             @csrf
@@ -40,7 +40,7 @@
             </tbody>
         </table>
     @else
-        <p>Нямате Резервации</p>
+        <p class="fs-5">Нямате Резервации</p>
     @endif
 </div>
 @endsection

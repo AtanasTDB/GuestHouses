@@ -29,7 +29,7 @@ class GuestHouseLocationController extends Controller
         GuestHouseLocation::create($request->all());
 
         return redirect()->route('admin.guestHouseLocations.index')
-            ->with('success', 'Location created successfully.');
+            ->with('success', 'Местоположението добавено успешно');
     }
 
     public function edit($id)
@@ -49,7 +49,7 @@ class GuestHouseLocationController extends Controller
         $location->update($request->all());
 
         return redirect()->route('admin.guestHouseLocations.index')
-            ->with('success', 'Location updated successfully.');
+            ->with('success', 'Местоположението е променено успешно');
     }
 
     public function destroy($id)
@@ -58,6 +58,6 @@ class GuestHouseLocationController extends Controller
         $location->delete();
 
         return redirect()->route('admin.guestHouseLocations.index')
-            ->with('success', 'Location deleted successfully.');
+            ->with('success', 'Местоположението е изтрито успешно');
     }
 }

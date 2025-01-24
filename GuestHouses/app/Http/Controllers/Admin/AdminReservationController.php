@@ -39,7 +39,7 @@ class AdminReservationController extends Controller
             'total_price' => $totalPrice,
         ]);
 
-        return redirect()->route('admin.reservations.index')->with('success', 'Reservation updated successfully!');
+        return redirect()->route('admin.reservations.index')->with('success', 'Резервацията е променена успешно');
     }
 
     public function destroy($id)
@@ -47,6 +47,6 @@ class AdminReservationController extends Controller
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
 
-        return redirect()->route('admin.reservations.index')->with('success', 'Reservation deleted successfully!');
+        return redirect()->route('admin.reservations.index')->with('success', 'Резервацията е изтрита успешно');
     }
 }

@@ -36,7 +36,7 @@ class AdminGuestHouseController extends Controller
 
         GuestHouse::create($request->all());
 
-        return redirect()->route('admin.guesthouses.index')->with('success', 'Guesthouse created successfully.');
+        return redirect()->route('admin.guesthouses.index')->with('success', 'Къщата за гости е добавена успешно');
     }
 
     public function edit($id)
@@ -62,7 +62,7 @@ class AdminGuestHouseController extends Controller
         $guestHouse = GuestHouse::findOrFail($id);
         $guestHouse->update($request->all());
 
-        return redirect()->route('admin.guesthouses.index')->with('success', 'Guesthouse updated successfully.');
+        return redirect()->route('admin.guesthouses.index')->with('success', 'Къщата за гости е променена успешно');
     }
 
     public function destroy($id)
@@ -70,6 +70,6 @@ class AdminGuestHouseController extends Controller
         $guestHouse = GuestHouse::findOrFail($id);
         $guestHouse->delete();
 
-        return redirect()->route('admin.guesthouses.index')->with('success', 'Guesthouse deleted successfully.');
+        return redirect()->route('admin.guesthouses.index')->with('success', 'Къщата за гости е изтрита успешно');
     }
 }
