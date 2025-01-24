@@ -11,7 +11,7 @@ class PublicReservationController extends Controller
 {
     public function index()
     {
-        // Show all reservations for the logged-in user
+
         $reservations = Reservation::where('user_id', Auth::id())->with('guesthouse')->get();
 
         return view('reservations.index', compact('reservations'));
@@ -31,14 +31,14 @@ class PublicReservationController extends Controller
             'end_date' => 'required|date|after:start_date',
         ]);
 
-        // Calculate total price
+
         $startDate = new \DateTime($request->start_date);
         $endDate = new \DateTime($request->end_date);
         $days = $startDate->diff($endDate)->days;
 
         $totalPrice = $days * $guesthouse->price_per_night;
 
-        // Save reservation
+
         Reservation::create([
             'user_id' => Auth::id(),
             'guest_house_id' => $guestHouseId,
@@ -51,17 +51,17 @@ class PublicReservationController extends Controller
     }
     public function destroy($reservationId)
     {
-        // Find the reservation by ID
+
         $reservation = Reservation::where('id', $reservationId)
-                                  ->where('user_id', Auth::id()) // Ensure the user can only delete their own reservations
+                                  ->where('user_id', Auth::id()) 
                                   ->first();
 
         if (!$reservation) {
-            // Reservation not found or does not belong to the user
+
             return redirect()->route('reservations.index')->with('error', 'Резервацията не е намерена');
         }
 
-        // Delete the reservation
+
         $reservation->delete();
 
         return redirect()->route('reservations.index')->with('success', 'Резервацията е отменена успешно');
