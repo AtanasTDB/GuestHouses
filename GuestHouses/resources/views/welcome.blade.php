@@ -32,12 +32,13 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $guesthouse->name }}</h5>
-                            <img src="{{ asset($guesthouse->images->first()->image_path) }}" class="card-img-top" alt="{{ $guesthouse->name }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-                            <p class="card-text">
-                                <strong>Location:</strong> {{ $guesthouse->location->name }}<br>
-                                <strong>Price:</strong> ${{ $guesthouse->price_per_night }}<br>
-                                <strong>Rating:</strong> {{ $guesthouse->rating }} stars<br>
+                            <h4 class="card-title">{{ $guesthouse->name }}</h4>
+                            <img src="{{ asset($guesthouse->images->first()->image_path) }}" class="card-img-top" alt="{{ $guesthouse->name }}" 
+                            style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+                            <p class="card-text fs-5">
+                                <strong>Местоположение:</strong> {{ $guesthouse->location->name }}<br>
+                                <strong>Цена:</strong> BGN {{ $guesthouse->price_per_night }}<br>
+                                <strong>Рейтинг:</strong><span style="color: gold;"> {{ str_repeat('★', $guesthouse->rating) }}</span><br>
                             </p>
                             <a href="{{ route('guesthouses.show', $guesthouse) }}" class="btn btn-primary">Детайли</a>
                         </div>

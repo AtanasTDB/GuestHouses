@@ -26,6 +26,12 @@ class PublicGuestHouseController extends Controller
         $query->where('location_id', $request->location);
     }
 
+    if ($request->filled('location_type')) {
+        $query->whereHas('location', function($query) use ($request) {
+            $query->where('type', $request->location_type);
+        });
+    }
+
     if ($request->has('hasPool')) {
         $query->where('hasPool', true);
     }
@@ -33,7 +39,7 @@ class PublicGuestHouseController extends Controller
     if ($request->has('hasInternet')) {
         $query->where('hasInternet', true);
     }
-    // New Filters for Rating and Capacity
+
     if ($request->filled('rating_min')) {
         $query->where('rating', '>=', $request->rating_min);
     }
@@ -46,8 +52,13 @@ class PublicGuestHouseController extends Controller
 
     $guestHouses = $query->get();
 
-    $locations = GuestHouseLocation::all(); // Assuming you have a Location model for dropdown
-    return view('guesthouses.index', compact('guestHouses', 'locations'));
+    $locations = GuestHouseLocation::all(); 
+
+    $locationTypes = GuestHouseLocation::select('type')
+                                       ->distinct()
+                                       ->get();
+
+    return view('guesthouses.index', compact('guestHouses', 'locations','locationTypes'));
 }
     public function show($id)
 {

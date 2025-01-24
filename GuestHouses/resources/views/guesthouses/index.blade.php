@@ -50,6 +50,21 @@
 
 
         <div class="col-md-4 col-lg-3 mb-3">
+            <label for="location_type" class="form-label">Тип туризъм</label>
+            <select name="location_type" id="location_type" class="form-select">
+                <option value="">Избери</option>
+                @foreach($locationTypes as $locationType)
+                    <option 
+                        value="{{ $locationType->type }}" 
+                        {{ request('location_type') == $locationType->type ? 'selected' : '' }}>
+                        {{ $locationType->type }}
+                    </option>
+                @endforeach
+             </select>
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 mb-3">
             <label for="rating_min" class="form-label">Рейтинг</label>
             <select name="rating_min" id="rating_min" class="form-select">
                 <option value="">Избери</option>
@@ -84,31 +99,33 @@
                 value="{{ request('capacity_max') }}">
         </div>
 
+        <div class="row mb-3 d-flex justify-content-start">
+            <div class="col-md-6 col-lg-1 mb-0 d-flex align-items-center">
+                <div class="form-check mt-4 ms-1">
+                    <input 
+                        type="checkbox" 
+                        name="hasPool" 
+                        id="hasPool" 
+                        class="form-check-input" 
+                        {{ request('hasPool') ? 'checked' : '' }}>
+                    <label for="hasPool" class="form-check-label">Басейн</label>
+                </div>
+            </div>
 
-        <div class="col-md-4 col-lg-3 mb-3 d-flex align-items-center">
-            <div class="form-check mt-4">
-                <input 
-                    type="checkbox" 
-                    name="hasPool" 
-                    id="hasPool" 
-                    class="form-check-input" 
-                    {{ request('hasPool') ? 'checked' : '' }}>
-                <label for="hasPool" class="form-check-label">Басейн</label>
+
+            <div class="col-md-6 col-lg-1 mb-0 d-flex align-items-center">
+                <div class="form-check mt-4 ms-1">
+                    <input 
+                        type="checkbox" 
+                        name="hasInternet" 
+                        id="hasInternet" 
+                        class="form-check-input" 
+                        {{ request('hasInternet') ? 'checked' : '' }}>
+                    <label for="hasInternet" class="form-check-label">Интернет</label>
+                </div>
             </div>
         </div>
-
-
-        <div class="col-md-4 col-lg-3 mb-3 d-flex align-items-center">
-            <div class="form-check mt-4">
-                <input 
-                    type="checkbox" 
-                    name="hasInternet" 
-                    id="hasInternet" 
-                    class="form-check-input" 
-                    {{ request('hasInternet') ? 'checked' : '' }}>
-                <label for="hasInternet" class="form-check-label">Интернет</label>
-            </div>
-        </div>
+        
     </div>
 
     <div class="row">

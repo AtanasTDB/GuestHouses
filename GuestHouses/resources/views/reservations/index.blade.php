@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>My Reservations</h1>
+    <h1>Моите Резервации</h1>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -11,20 +11,20 @@
     @endif
 
     @if ($reservations->count() > 0)
-        <table class="table table-striped">
+        <table class="table table-striped fs-5">
             <thead>
                 <tr>
-                    <th>Guesthouse</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Total Price</th>
-                    <th>Actions</th>
+                    <th>Име</th>
+                    <th>Дата на настаняване</th>
+                    <th>Дата на напускане</th>
+                    <th>Обща цена</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($reservations as $reservation)
                     <tr>
-                        <td>{{ $reservation->guesthouse->name }}</td>
+                        <td>{{$reservation->guesthouse->type}} {{ $reservation->guesthouse->name }}</td>
                         <td>{{ $reservation->reservation_date }}</td>
                         <td>{{ $reservation->leaving_date }}</td>
                         <td>${{ $reservation->price }}</td>
@@ -32,7 +32,7 @@
                             <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this reservation?')">Cancel Reservation</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си че искаш да отмениш резервацията?')">Отмени резервацията</button>
                         </form>
                         </td>
                     </tr>
@@ -40,7 +40,7 @@
             </tbody>
         </table>
     @else
-        <p>You have no reservations yet.</p>
+        <p>Нямате Резервации</p>
     @endif
 </div>
 @endsection
