@@ -57,7 +57,8 @@ class PublicGuestHouseController extends Controller
 public function welcome()
     {
         
-        $topGuestHouses = GuestHouse::orderBy('rating', 'desc')->take(3)->get();
+        $topGuestHouses = GuestHouse::with('images')
+        ->orderBy('rating', 'desc')->take(3)->get();
 
         
         return view('welcome', compact('topGuestHouses'));
