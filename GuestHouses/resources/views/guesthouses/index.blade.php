@@ -4,83 +4,65 @@
 
 @section('content')
 <div class="container my-5">
-    <h1 class="mb-4 text-center">Available Guest Houses</h1>
+    <h1 class="mb-4 text-center">Къщи за гости</h1>
 
-    <!-- Filter Form -->
+
     <form action="{{ route('guesthouses.index') }}" method="GET" class="mb-5">
-        <div class="row">
-            <div class="col-md-3">
-                <label for="price_min" class="form-label">Min Price</label>
-                <input 
-                    type="number" 
-                    name="price_min" 
-                    id="price_min" 
-                    class="form-control" 
-                    placeholder="0" 
-                    value="{{ request('price_min') }}">
-            </div>
-            <div class="col-md-3">
-                <label for="price_max" class="form-label">Max Price</label>
-                <input 
-                    type="number" 
-                    name="price_max" 
-                    id="price_max" 
-                    class="form-control" 
-                    placeholder="1000" 
-                    value="{{ request('price_max') }}">
-            </div>
-            <div class="col-md-3">
-                <label for="location" class="form-label">Location</label>
-                <select name="location" id="location" class="form-select">
-                    <option value="">Any</option>
-                    @foreach($locations as $location)
-                        <option 
-                            value="{{ $location->id }}" 
-                            {{ request('location') == $location->id ? 'selected' : '' }}>
-                            {{ $location->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+    <div class="row">
+
+        <div class="col-md-4 col-lg-3 mb-3">
+            <label for="price_min" class="form-label">Мин Цена</label>
+            <input 
+                type="number" 
+                name="price_min" 
+                id="price_min" 
+                class="form-control" 
+                placeholder="0" 
+                value="{{ request('price_min') }}">
         </div>
-        <div class="row mt-3">
-            <div class="col-md-3">
-                <label for="hasPool" class="form-check-label">
-                    <input 
-                        type="checkbox" 
-                        name="hasPool" 
-                        id="hasPool" 
-                        class="form-check-input" 
-                        {{ request('hasPool') ? 'checked' : '' }}>
-                    Pool
-                </label>
-            </div>
-            <div class="col-md-3">
-                <label for="hasInternet" class="form-check-label">
-                    <input 
-                        type="checkbox" 
-                        name="hasInternet" 
-                        id="hasInternet" 
-                        class="form-check-input" 
-                        {{ request('hasInternet') ? 'checked' : '' }}>
-                    Internet
-                </label>
-            </div>
-            <div class="row mt-3">
-        <!-- New Fields -->
-        <div class="col-md-3">
-            <label for="rating_min" class="form-label">Min Rating</label>
+
+
+        <div class="col-md-4 col-lg-3 mb-3">
+            <label for="price_max" class="form-label">Макс Цена</label>
+            <input 
+                type="number" 
+                name="price_max" 
+                id="price_max" 
+                class="form-control" 
+                placeholder="1000" 
+                value="{{ request('price_max') }}">
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 mb-3">
+            <label for="location" class="form-label">Местоположение</label>
+            <select name="location" id="location" class="form-select">
+                <option value="">Избери</option>
+                @foreach($locations as $location)
+                    <option 
+                        value="{{ $location->id }}" 
+                        {{ request('location') == $location->id ? 'selected' : '' }}>
+                        {{ $location->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 mb-3">
+            <label for="rating_min" class="form-label">Рейтинг</label>
             <select name="rating_min" id="rating_min" class="form-select">
-                <option value="">Any</option>
+                <option value="">Избери</option>
                 @for ($i = 1; $i <= 5; $i++)
                     <option value="{{ $i }}" {{ request('rating_min') == $i ? 'selected' : '' }}>
-                        {{ $i }} Stars
+                        {{ $i }} Звезди
                     </option>
                 @endfor
             </select>
         </div>
-        <div class="col-md-3">
-            <label for="capacity_min" class="form-label">Min Capacity</label>
+
+        <div class="col-md-4 col-lg-3 mb-3">
+            <label for="capacity_min" class="form-label">Мин Брой Места</label>
             <input 
                 type="number" 
                 name="capacity_min" 
@@ -89,8 +71,10 @@
                 placeholder="1" 
                 value="{{ request('capacity_min') }}">
         </div>
-        <div class="col-md-3">
-            <label for="capacity_max" class="form-label">Max Capacity</label>
+
+
+        <div class="col-md-4 col-lg-3 mb-3">
+            <label for="capacity_max" class="form-label">Макс Брой Места</label>
             <input 
                 type="number" 
                 name="capacity_max" 
@@ -99,13 +83,43 @@
                 placeholder="10" 
                 value="{{ request('capacity_max') }}">
         </div>
-        <div class="col-md-3 text-end">
-            <button type="submit" class="btn btn-primary">Filter</button>
-            <a href="{{ route('guesthouses.index') }}" class="btn btn-secondary">Reset</a>
-        </div>
-    </form>
 
-    <!-- Guest Houses -->
+
+        <div class="col-md-4 col-lg-3 mb-3 d-flex align-items-center">
+            <div class="form-check mt-4">
+                <input 
+                    type="checkbox" 
+                    name="hasPool" 
+                    id="hasPool" 
+                    class="form-check-input" 
+                    {{ request('hasPool') ? 'checked' : '' }}>
+                <label for="hasPool" class="form-check-label">Басейн</label>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 mb-3 d-flex align-items-center">
+            <div class="form-check mt-4">
+                <input 
+                    type="checkbox" 
+                    name="hasInternet" 
+                    id="hasInternet" 
+                    class="form-check-input" 
+                    {{ request('hasInternet') ? 'checked' : '' }}>
+                <label for="hasInternet" class="form-check-label">Интернет</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-primary">Приложи</button>
+            <a href="{{ route('guesthouses.index') }}" class="btn btn-secondary">Изтрий</a>
+        </div>
+    </div>
+</form>
+
+
     <div class="row">
         @foreach($guestHouses as $guestHouse)
             <div class="col-md-4 mb-4">
@@ -115,14 +129,14 @@
                 style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
                 @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ $guestHouse->name }}</h5>
-                        <p class="card-text"><strong>Type:</strong> {{ $guestHouse->type }}</p>
-                        <p class="card-text"><strong>Single Beds:</strong> {{ $guestHouse->single_beds }}</p>
-                        <p class="card-text"><strong>Double Beds:</strong> {{ $guestHouse->double_beds }}</p>
-                        <p class="card-text"><strong>Price per Night:</strong> ${{ $guestHouse->price_per_night }}</p>
-                        <p class="card-text"><strong>Rating:</strong> {{ $guestHouse->rating }} stars</p>
+                        <h5 class="card-title">{{ $guestHouse->type }} {{ $guestHouse->name }}</h5>
+                        <p class="card-text"><strong>Местоположение:</strong> {{ $guestHouse->location->name }}</p>
+                        <p class="card-text"><strong>Брой Места:</strong> {{ $guestHouse->capacity }}</p>
+                        <p class="card-text"><strong>Цена:</strong> BGN{{ $guestHouse->price_per_night }}</p>
+                        <p class="card-text"><strong>Рейтинг</strong>
+                        <span style="color: gold;">{{ str_repeat('★', $guestHouse->rating) }}</span></p>
                         <p class="card-text">
-                            <strong>Amenities:</strong> 
+                            <strong>Екстри:</strong> 
                             <span class="badge bg-{{ $guestHouse->hasPool ? 'success' : 'secondary' }}">
                                 {{ $guestHouse->hasPool ? 'Pool' : 'No Pool' }}
                             </span>
@@ -130,10 +144,9 @@
                                 {{ $guestHouse->hasInternet ? 'Internet' : 'No Internet' }}
                             </span>
                         </p>
-                        <p class="card-text"><strong>Location:</strong> {{ $guestHouse->location->name }}</p>
-                        <a href="{{ route('guesthouses.show', $guestHouse->id) }}" class="btn btn-primary">View Details</a>
+                        <a href="{{ route('guesthouses.show', $guestHouse->id) }}" class="btn btn-primary">Детайли</a>
                         @if(auth()->check() && !auth()->user()->is_admin)
-                        <a href="{{ route('reservations.create', $guestHouse->id) }}" class="btn btn-success">Make a Reservation</a>
+                        <a href="{{ route('reservations.create', $guestHouse->id) }}" class="btn btn-success">Направи резервация</a>
                         @endif
                     </div>
                 </div>
